@@ -7,13 +7,16 @@ import java.io.Reader;
 import java.util.Iterator;
 import java.util.stream.StreamSupport;
 
-public class OpenCSVBuilder {
+public class OpenCSVBuilder implements ICSVBuilder {
+
+    @Override
     public <E> int getCount(Iterator<E> CSVIterator) {
         Iterable<E> csvIterable =() -> CSVIterator;
         int namOfEateries = (int) StreamSupport.stream(csvIterable.spliterator(),false).count();
         return namOfEateries;
     }
 
+    @Override
     public <E>Iterator<E> getCSVIterator(Reader reader, Class csvClass) {
         CsvToBeanBuilder<E> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
         csvToBeanBuilder.withType(csvClass);
