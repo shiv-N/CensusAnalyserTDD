@@ -10,7 +10,7 @@ public class CensusAnalyserException extends Exception {
     enum ExceptionType {
         CENSUS_FILE_PROBLEM,
         UNABLE_TO_PARSE,
-        RUNTIME_ERROR
+        RUNTIME_ERROR, NO_CENSUS_DATA;
     }
 
     ExceptionType type;
