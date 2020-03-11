@@ -74,6 +74,13 @@ public class CensusAnalyser {
         return new Gson().toJson(censusList);
     }
 
+    public String getDensityWiseSortedCensusData() throws CensusAnalyserException {
+        CheckForNullObject();
+        Comparator<IndiaCensusDAO> censusComparator = Comparator.comparing(census -> census.densityPerSqKm);
+        this.sort(censusComparator);
+        return new Gson().toJson(censusList);
+    }
+
     private void CheckForNullObject() throws CensusAnalyserException {
         if (censusList == null || censusList.size() == 0) {
             throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
